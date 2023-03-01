@@ -1,4 +1,5 @@
 # Racket Mutation Testing
+[![DOI](https://zenodo.org/badge/607357150.svg)](https://zenodo.org/badge/latestdoi/607357150)
 
 ## Installing the Package
 Download the latest version from the release page and install it with pip (requires Python >= 3.10):
