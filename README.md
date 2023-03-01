@@ -1,9 +1,9 @@
 # Racket Mutation Testing
 
 ## Installing the Package
-Install the latest Python wheel as follows (requires Python >= 3.10):
+Download the latest version from the release page and install it with pip (requires Python >= 3.10):
 ```
-python3 -m pip install $(ls -1 dist/*.whl | tail -n 1)
+python3 -m pip install {version}.whl
 ```
 
 ## Basic Usage
