@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+**/.DS_Store
+
+cmp.rkd
+cond.skt
+sample.rkt
+.vscode/settings.json
+racket_mutation_analysis/mutation_analysis/e2e/actual_output.txt

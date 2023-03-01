@@ -1,0 +1,95 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pip-tools
+          pip-sync requirements-dev.txt
+      - name: Lint with pycdestyle, isort, and pyright
+        run: |
+          sh lint.sh
+
+  unittest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install racket
+        run: |
+          sudo add-apt-repository ppa:plt/racket
+          sudo apt-get update
+          sudo apt-get install racket
+          racket --version
+      - name: Install prod dependencies only
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pip-tools
+          pip-sync requirements.txt
+      - name: Run unit tests
+        run: |
+          python3 -m unittest discover
+
+  e2etest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install racket
+        run: |
+          sudo add-apt-repository ppa:plt/racket
+          sudo apt-get update
+          sudo apt-get install racket
+          racket --version
+          raco pkg install al2-test-runner
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Build and install package
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install build
+          python3 -m build
+          python3 -m pip install $(ls -1 dist/*.whl | tail -n 1)
+      - name: Run mutation analysis e2e tests
+        working-directory: racket_mutation_analysis/mutation_analysis/e2e
+        run: |
+          ./run_e2e_test.sh tests/all_tests_all_mutants 0
+          ./run_e2e_test.sh tests/exclude_test_all_mutants 0
+          ./run_e2e_test.sh tests/include_test_all_mutants 1
+          ./run_e2e_test.sh tests/include_test_exclude_mutants 1
+          ./run_e2e_test.sh tests/include_test_include_mutants 1
+          ./run_e2e_test.sh tests/include_test_include_mutants2 0
+          ./run_e2e_test.sh tests/skip_false_positive_check 0
+          ./run_e2e_test.sh tests/stop_after_false_positive_check_0_exit_status 0
+          ./run_e2e_test.sh tests/stop_after_false_positive_check_1_exit_status 1

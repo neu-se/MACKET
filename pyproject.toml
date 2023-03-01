@@ -1,0 +1,32 @@
+[project]
+name = "racket_mutation_analysis"
+version = "0.0.1"
+authors = [
+  { name="James Perretta", email="perretta.j@northeastern.edu" },
+  { name="Bambi Zhuang", email="zhuang.ba@northeastern.edu" },
+]
+description = "Utilities for conducting mutation analysis on simple Racket programs."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = ["pyyaml", "jsonschema"]
+
+[tool.setuptools.packages.find]
+include = ["racket_mutation_analysis*"]
+
+[project.urls]
+
+[project.scripts]
+generate-mutants = "racket_mutation_analysis.racket_mutation.main:main"
+run-mutants = "racket_mutation_analysis.mutation_analysis.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "isort",
+    "pyright",
+    "pycodestyle",
+
+    "build",
+]

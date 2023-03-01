@@ -1,0 +1,2 @@
+#lang htdp/bsl 
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname hw3-master) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f))) 
