@@ -1,0 +1,219 @@
+=================== Running setup ===================
+---stdout---
+Hello
+
+=================== Running test case discovery ===================
+---stdout---
+Regular test
+Regular test 2
+Regular test 3
+False positive test
+Timeout test
+
+=================== Checking for false positives ===================
+---- Checking test case "Regular test" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test"
+
+*** Testsuite Test Suite
+	Regular test: ok (0.05 ms)
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+---- Checking test case "Regular test 3" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 3"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: skipped
+	Regular test 3: ok (0.05 ms)
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+---- Checking test case "False positive test" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "False positive test"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: fail (0.07 ms)
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.07 ms
+*** Total tests: 5 ; failures: 1 ; errors: 0 ; skipped: 4
+
+---stderr---
+--------------------
+False positive test
+FAILURE
+name:       check-equal?
+location:   hw-student-tests.rkt:21:12
+actual:     3
+expected:   5
+--------------------
+1/1 test failures
+
+*** FALSE POSITIVE found in test case "False positive test" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'False positive test']' returned non-zero exit status 1.
+---- Checking test case "Timeout test" ----
+---stdout---
+b'raco test: "hw-student-tests.rkt" "Timeout test"\n\n*** Testsuite Test Suite\n\tRegular test: skipped\n\tRegular test 2: skipped\n\tRegular test 3: skipped\n\tFalse positive test: skipped\n\tTimeout test: '
+*** FALSE POSITIVE found in test case "Timeout test" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'Timeout test']' timed out after 3 seconds
+=================== Running remaining tests against mutants ===================
+---- Mutant: "1", Test case: "Regular test" ----
+*** Test case "Regular test" DETECTED mutant "1" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'Regular test']' returned non-zero exit status 1.
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test"
+
+*** Testsuite Test Suite
+	Regular test: fail (0.08 ms)
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.08 ms
+*** Total tests: 5 ; failures: 1 ; errors: 0 ; skipped: 4
+
+---stderr---
+--------------------
+Regular test
+FAILURE
+name:       check-equal?
+location:   hw-student-tests.rkt:9:12
+actual:     -1
+expected:   3
+--------------------
+1/1 test failures
+
+---- Mutant: "1", Test case: "Regular test 3" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 3"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: skipped
+	Regular test 3: ok (0.05 ms)
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+---- Mutant: "2", Test case: "Regular test" ----
+*** Test case "Regular test" DETECTED mutant "2" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'Regular test']' returned non-zero exit status 1.
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test"
+
+*** Testsuite Test Suite
+	Regular test: fail (0.08 ms)
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.08 ms
+*** Total tests: 5 ; failures: 1 ; errors: 0 ; skipped: 4
+
+---stderr---
+--------------------
+Regular test
+FAILURE
+name:       check-equal?
+location:   hw-student-tests.rkt:9:12
+actual:     1
+expected:   3
+--------------------
+1/1 test failures
+
+---- Mutant: "2", Test case: "Regular test 3" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 3"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: skipped
+	Regular test 3: ok (0.05 ms)
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+---- Mutant: "3", Test case: "Regular test" ----
+*** Test case "Regular test" DETECTED mutant "3" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'Regular test']' returned non-zero exit status 1.
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test"
+
+*** Testsuite Test Suite
+	Regular test: fail (0.08 ms)
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.08 ms
+*** Total tests: 5 ; failures: 1 ; errors: 0 ; skipped: 4
+
+---stderr---
+--------------------
+Regular test
+FAILURE
+name:       check-equal?
+location:   hw-student-tests.rkt:9:12
+actual:     2
+expected:   3
+--------------------
+1/1 test failures
+
+---- Mutant: "3", Test case: "Regular test 3" ----
+*** Test case "Regular test 3" DETECTED mutant "3" ***
+Command '['bash', 'mutation_commands.sh', 'run_test', 'Regular test 3']' returned non-zero exit status 1.
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 3"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: skipped
+	Regular test 3: fail (0.08 ms)
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.08 ms
+*** Total tests: 5 ; failures: 1 ; errors: 0 ; skipped: 4
+
+---stderr---
+--------------------
+Regular test 3
+FAILURE
+name:       check-equal?
+location:   hw-student-tests.rkt:17:12
+actual:     0
+expected:   2
+--------------------
+1/1 test failures
+
+
+========================== SUMMARY ========================
+Mutant 1: Killed
+	Detected by: Regular test
+Mutant 2: Killed
+	Detected by: Regular test
+Mutant 3: Killed
+	Detected by: Regular test, Regular test 3
+
+Total mutants: 3
+# Detected: 3
+# Undetected: 0
+# Skipped: 0
+Mutation score: 100.00%

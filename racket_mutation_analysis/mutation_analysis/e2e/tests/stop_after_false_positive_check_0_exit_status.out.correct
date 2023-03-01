@@ -1,0 +1,28 @@
+=================== Running setup ===================
+---stdout---
+Hello
+
+=================== Running test case discovery ===================
+---stdout---
+Regular test
+Regular test 2
+Regular test 3
+False positive test
+Timeout test
+
+=================== Checking for false positives ===================
+---- Checking test case "Regular test" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test"
+
+*** Testsuite Test Suite
+	Regular test: ok ()
+	Regular test 2: skipped
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+No false positives detected

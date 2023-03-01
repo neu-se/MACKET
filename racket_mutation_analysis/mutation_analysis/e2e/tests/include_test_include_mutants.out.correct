@@ -1,0 +1,53 @@
+=================== Running setup ===================
+---stdout---
+Hello
+
+=================== Running test case discovery ===================
+---stdout---
+Regular test
+Regular test 2
+Regular test 3
+False positive test
+Timeout test
+
+=================== Checking for false positives ===================
+---- Checking test case "Regular test 2" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 2"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: ok (0.08 ms)
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.08 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+=================== Running remaining tests against mutants ===================
+---- Mutant: "3", Test case: "Regular test 2" ----
+---stdout---
+raco test: "hw-student-tests.rkt" "Regular test 2"
+
+*** Testsuite Test Suite
+	Regular test: skipped
+	Regular test 2: ok (0.05 ms)
+	Regular test 3: skipped
+	False positive test: skipped
+	Timeout test: skipped
+*** Testsuite Test Suite completed in 0.05 ms
+*** Total tests: 5 ; failures: 0 ; errors: 0 ; skipped: 4
+1 test passed
+
+
+========================== SUMMARY ========================
+Mutant 1: Ignored
+Mutant 2: Ignored
+Mutant 3: Survived
+
+Total mutants: 3
+# Detected: 0
+# Undetected: 1
+# Skipped: 2
+Mutation score: 0.00%
